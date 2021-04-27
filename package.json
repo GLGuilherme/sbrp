@@ -1,0 +1,20 @@
+{
+  "name": "sbrp",
+  "version": "1.0.0",
+  "description": "Search Based Requirements Priorization",
+  "type": "module",
+  "main": "src/HillClimbing.js",
+  "repository": "https://github.com/GLGuilherme/sbrp.git",
+  "author": "<gabrielopes31@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node src/HillClimbing.js"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^3.5.0",
+    "danfojs-node": "^0.2.6",
+    "global": "^4.4.0",
+    "pandas-js": "^0.2.4",
+    "tfjs": "^0.6.0"
+  }
+}
