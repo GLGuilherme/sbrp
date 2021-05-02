@@ -7,10 +7,14 @@ var capacitySptrints = 60; //in hours
 const checkClone = (solution) => {
   let sol = [];
   solution.forEach((id) => {
-    if (!sol.includes(id)) {
+    if (!sol.includes(id) && id >= 1 && id <= 100) {
       sol.push(id);
+    } else if (id < 1) {
+      sol.push(1);
+    } else if (id > 100) {
+      sol.push(100);
     } else {
-      sol.push(1 + Math.floor(Math.random() * 99));
+      sol.push(Math.floor(Math.random() * 100) + 1);
     }
   });
   return sol;
@@ -19,32 +23,40 @@ const checkClone = (solution) => {
 const createSolution = (bd) => {
   let current = [];
   while (sprintsCapacity(current, bd) < capacitySptrints) {
-    let id = 1 + parseInt(Math.floor(Math.random() * 99));
+    let id = parseInt(Math.floor(Math.random() * 100) + 1);
     current.push(id);
-    current = checkClone(current);
   }
-  console.log(`Current Solution: ${current}`);
+  current = checkClone(current);
+
+  console.log(
+    `Current Solution: [${current}], Fit: ${objectiveFunction(
+      current,
+      capacitySptrints,
+      bd
+    )}, Estimate/h: ${sprintsCapacity(current, bd)}`
+  );
+
   return current;
 };
 
 const extendsNeighborhood = (current) => {
-  let neighbor1 = [...current];
-  neighbor1[0] = neighbor1[0] + 1;
-  neighbor1 = checkClone(neighbor1);
+  const neighborhood = [];
 
-  let neighbor2 = [...current];
-  neighbor2[1] = neighbor2[1] + 1;
-  neighbor2 = checkClone(neighbor2);
+  const translateOperation = {
+    0: +1,
+    1: -1,
+    2: +2,
+    3: -2,
+  };
 
-  let neighbor3 = [...current];
-  neighbor3[2] = neighbor3[2] + 1;
-  neighbor3 = checkClone(neighbor3);
+  for (let i = 0; i <= 3; i++) {
+    let neighbor = [...current];
+    const randomItem = Math.floor(Math.random() * (neighbor.length - 1));
 
-  let neighbor4 = [...current];
-  neighbor4[3] = neighbor4[3] + 1;
-  neighbor4 = checkClone(neighbor4);
-
-  let neighborhood = [neighbor1, neighbor2, neighbor3, neighbor4];
+    neighbor[randomItem] = neighbor[randomItem] + translateOperation[i];
+    neighbor = checkClone(neighbor);
+    neighborhood.push(neighbor);
+  }
 
   return neighborhood;
 };
@@ -67,7 +79,7 @@ const hcProcess = async (iterations) => {
         `Neighbor: [${sol}], Fit: ${fitNeighbor}, Estimate/h: ${sprintsCapacity(
           sol,
           bd
-        )}`
+        )}\n`
       );
 
       if (fitNeighbor <= fitCurrent) {
@@ -77,10 +89,11 @@ const hcProcess = async (iterations) => {
     c = c + 1;
 
     console.log(
-      `New Current: [${current}], Fit: ${fitCurrent}, Estimate/h: ${sprintsCapacity(
+      `New Current: [${current}], Fit: ${objectiveFunction(
         current,
+        capacitySptrints,
         bd
-      )}`
+      )}, Estimate/h: ${sprintsCapacity(current, bd)}\n`
     );
   }
 };
