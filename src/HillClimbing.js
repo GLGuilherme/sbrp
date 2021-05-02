@@ -29,7 +29,7 @@ const createSolution = (bd) => {
   current = checkClone(current);
 
   console.log(
-    `Current Solution: [${current}], Fit: ${objectiveFunction(
+    `\nCurrent Solution: [${current}], Fit: ${objectiveFunction(
       current,
       capacitySptrints,
       bd
