@@ -99,7 +99,7 @@ const hcProcess = async (iterations) => {
         current,
         capacitySptrints,
         bd
-      )}, Estimate/h: ${sprintsCapacity(current, bd)}\n`
+      )}, Estimate/h: ${sprintsCapacity(current, bd)}`
     );
   }
 };
