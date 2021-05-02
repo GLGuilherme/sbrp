@@ -71,6 +71,9 @@ const hcProcess = async (iterations) => {
   while (c < iterations) {
     const neighborhood = extendsNeighborhood(current);
 
+    console.log(
+      "------------------------------------------------------------------------------------"
+    );
     neighborhood.forEach((sol) => {
       fitCurrent = objectiveFunction(current, capacitySptrints, bd);
       fitNeighbor = objectiveFunction(sol, capacitySptrints, bd);
@@ -86,6 +89,9 @@ const hcProcess = async (iterations) => {
         current = sol;
       } else current;
     });
+    console.log(
+      "-------------------------------------------------------------------------------------"
+    );
     c = c + 1;
 
     console.log(
