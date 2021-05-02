@@ -1,8 +1,4 @@
-import df from "danfojs-node";
-
-export const sprintsCapacity = async (solution) => {
-  const bd = await df.read_csv("database/base.csv");
-
+export const sprintsCapacity = (solution, bd) => {
   const data = [];
   const dataEstimate = [];
 
@@ -17,6 +13,6 @@ export const sprintsCapacity = async (solution) => {
       estimate += parseInt(e.data);
     }
   });
-  console.log(estimate);
+
   return estimate;
 };
