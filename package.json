@@ -11,6 +11,6 @@
     "dev": "node src/HillClimbing.js"
   },
   "dependencies": {
-    "danfojs-node": "^0.2.6"
+    "danfojs-node": "^1.0.4"
   }
 }

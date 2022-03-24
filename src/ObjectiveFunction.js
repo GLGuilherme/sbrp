@@ -12,8 +12,8 @@ export const objectiveFunction = (solution, capacitySptrints, bd) => {
 
   let gpd = 0;
   grauDep.forEach((item) => {
-    if (parseInt(item.data) !== null) {
-      gpd += parseInt(item.data);
+    if (parseInt(item.$data) !== null) {
+      gpd += parseInt(item.$data);
     }
   });
   gpd = gpd / solution.length;
@@ -22,7 +22,7 @@ export const objectiveFunction = (solution, capacitySptrints, bd) => {
   let total = 0;
 
   solution.forEach((item, index) => {
-    fitValue += parseInt(data[index].loc({ columns: ["Prioridade"] }).data);
+    fitValue += parseInt(data[index].loc({ columns: ["Prioridade"] }).$data);
   });
 
   if (solutionCapacity === capacitySptrints) {

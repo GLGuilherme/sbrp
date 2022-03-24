@@ -10,8 +10,8 @@ export const sprintsCapacity = (solution, bd) => {
   let estimate = 0;
 
   dataEstimate.map((item) => {
-    if (parseInt(item.data) !== null) {
-      estimate += parseInt(item.data);
+    if (parseInt(item.$data) !== null) {
+      estimate += parseInt(item.$data);
     }
   });
 

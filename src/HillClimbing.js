@@ -62,7 +62,7 @@ const extendsNeighborhood = (current) => {
 };
 
 const hcProcess = async (iterations) => {
-  const bd = await df.read_csv("database/base.csv");
+  const bd = await df.readCSV("database/base.csv");
   let c = 0;
   var current = createSolution(bd);
   var fitCurrent;
